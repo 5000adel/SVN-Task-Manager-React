@@ -1,0 +1,85 @@
+.parent-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    border: 1px solid #cfccf841;
+    background: #b5b2da52;
+    border-radius: 10px;
+    width: 520px;
+}
+
+.icon {
+/* also used in topbar, put in general styles */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e2c02a;
+    width: 64px;
+    height: 64px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 2px #e2c02a50;
+
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #cfccf841;
+    padding: 10px;
+    gap: 10px;
+    font-family: 'Syne', sans-serif;
+} 
+/* add header to main styles */
+
+.h1 {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+    color: #ffffffc4;
+    font-weight: 750;
+}
+
+.container-box {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    text-align: left;
+    gap: 5px;
+}
+
+.cb-1 {
+    flex-direction: column;
+}
+
+.cb-2 {
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.auth-input {
+    color: #ffffffc4;
+    background-color: #ffffff49;
+    margin: 8px 15px;
+    border-radius: 10px;
+    padding: 12px 20px;
+    font-size: 15px;
+    border: none;
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+
+auth-input::placeholder,
+textarea::placeholder {
+    color: #ffffffc4;
+    opacity: 0.6;
+}
+
+.button {
+    border: 5px solid #b5b2da52;
+    border-radius: 5px;
+    flex-grow: 1;
+}
