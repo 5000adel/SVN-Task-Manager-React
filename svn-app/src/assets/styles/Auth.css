@@ -5,6 +5,7 @@
     height: 100vh;
 }
 
+/* used in children components, put in general styles */
 .container {
     border: 1px solid #cfccf841;
     background: #b5b2da52;
