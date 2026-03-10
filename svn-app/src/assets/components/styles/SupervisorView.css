@@ -50,6 +50,43 @@ button {
     border-radius: 15px;
 }
 
+.supervisor-overview-parent-container {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.supervisor-overview-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    text-align: left;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: 'Syne', sans-serif;
+
+    box-sizing: border-box;
+    background: #414050a1;
+    
+
+    border: 1px solid #cccdddc0;
+    border-radius: 10px;
+    padding: 10px;
+    
+    color: #ffffffc0;
+}
+
+.supervisor-overview-container subtitle{
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: #ffffff94;
+    font-style: italic;
+}
+
+
 .supervisor-dashboard-container {
     display: flex;
     flex-direction: row;
