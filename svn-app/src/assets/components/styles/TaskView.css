@@ -5,7 +5,7 @@
     background: #b5b2da52;
     border-radius: 10px;
     width: 60vw;
-    min-height: 600px;
+    height: 600px;
 }
 
 .footer {
@@ -16,9 +16,10 @@
     padding: 10px;
     gap: 10px;
     font-family: 'Syne', sans-serif;
-} 
+}
+
 /* add footer to main styles */
-button{
+button {
     height: 24px;
     padding: auto;
     font-size: 12px;
@@ -31,14 +32,15 @@ button{
     position: relative;
     margin: 20px;
     align-self: center;
-    padding: 20px ;
-    display: flex;
-    flex-direction: column;
+    padding: 20px;
     border: 1px solid #cfccf841;
     background: #b5b2da52;
     border-radius: 10px;
-    width: 90%;
-    height: 100%;   
+    width: calc(100% - 80px);
+    height: 500px;
     gap: 10px;
     align-items: center;
+    scrollbar-width: thin;
+    scrollbar-color: #dbdbdb #f1f1f100;
+    overflow: auto;
 }

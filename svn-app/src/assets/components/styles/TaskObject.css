@@ -8,8 +8,10 @@
     text-align: left;
     padding: 15px;
     gap: 5px;
-    width: calc(100% - 30px);
+    width: calc(100% - 60px);
     overflow: hidden;
+    height: 90px;
+    margin: 10px;
 }
 
 .task-status-container{
