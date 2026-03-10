@@ -1,0 +1,34 @@
+.worker-card-object-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #cfccf8a1;
+    background: #414050a1;
+    border-radius: 10px;
+    text-align: left;
+    padding: 10px;
+    gap: 5px;
+    overflow: hidden;
+    height: 90px;
+    margin: 10px;
+}
+
+.worker-status-container{
+    display: flex;
+    flex-direction: column;
+    font-size: 10px;
+    gap: 5px;
+    
+}
+
+.worker-status-container > div{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    border: 1px solid #cfccf8a1;
+    padding: 0 15px;
+    border-radius: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+}

@@ -1,0 +1,74 @@
+.supervisor-view-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #cfccf841;
+    background: #b5b2da52;
+    border-radius: 10px;
+    width: 60vw;
+    height: 80vh;
+}
+
+.supervisor-dashboard-sub-container {
+    border: 1px solid #cfccf841;
+    background: #b5b2da52;
+    border-radius: 10px;
+    height: calc(100% - 2px);
+    min-width: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.supervisor-dashboard-sub-container .header{
+    position: sticky;
+    background: #807da1;
+    top: 0;
+}
+
+.supervisor-body {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.footer {
+    margin-top: auto;
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid #cfccf841;
+    padding: 10px;
+    gap: 10px;
+    font-family: 'Syne', sans-serif;
+}
+
+/* add footer to main styles */
+button {
+    height: 24px;
+    padding: auto;
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+}
+
+.supervisor-dashboard-container {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    margin: 20px;
+    align-self: center;
+    padding: 20px;
+    border: 1px solid #cfccf841;
+    background: #b5b2da52;
+    border-radius: 10px;
+    width: calc(100% - 80px);
+    height: calc(100% - 40px);
+    gap: 10px;
+    align-items: center;
+    scrollbar-width: thin;
+    scrollbar-color: #dbdbdb #f1f1f100;
+    overflow: auto;
+}
+
+.supervisor-dashboard-container div {
+    flex: 1;
+}
