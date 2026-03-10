@@ -37,7 +37,7 @@ button {
     background: #b5b2da52;
     border-radius: 10px;
     width: calc(100% - 80px);
-    height: 500px;
+    height: calc(100% - 40px);
     gap: 10px;
     align-items: center;
     scrollbar-width: thin;
