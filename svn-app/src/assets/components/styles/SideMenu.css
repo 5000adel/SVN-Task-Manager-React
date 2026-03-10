@@ -48,6 +48,8 @@
     font-style: italic;
 }
 
+
+/* add header to main styles */
 .header {
     display: flex;
     flex-direction: row;
