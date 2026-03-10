@@ -14,7 +14,7 @@ function App() {
     <>
       <div style={{ alignItems: 'center' }}>
         <Background />
-        <Dashboard onLogOut={() => setShowAuth(true)}/>
+        <Dashboard onLogOut={() => setShowAuth(true)} role={"worker"}/>
         {showAuth && <Auth onLogIn={() => setShowAuth(false)}/>};
       </div>
     </>
