@@ -3,6 +3,8 @@
     background: #b5b2da52;
     border-radius: 10px;
     width: 320px;
+    display: flex;
+    flex-direction: column;
 }
 
 .sub-container {
