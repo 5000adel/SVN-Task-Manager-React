@@ -9,6 +9,7 @@
     padding: 15px;
     gap: 5px;
     width: calc(100% - 30px);
+    overflow: hidden;
 }
 
 .task-status-container{
