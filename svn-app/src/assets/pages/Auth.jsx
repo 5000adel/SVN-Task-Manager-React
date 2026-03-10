@@ -19,9 +19,9 @@ export default function Auth({onLogIn}) {
                     </div>
 
                     <div className='container-box cb-1'>
-                        <div className='h1'>Enter Username</div>
+                        <div className='h1' style={{paddingLeft:'5px'}}>Enter Username</div>
                         <input placeholder='Username' className='auth-input' />
-                        <div className='h1'>Enter Password</div>
+                        <div className='h1' style={{paddingLeft:'5px'}}>Enter Password</div>
                         <input placeholder='Password' type='password' className='auth-input' />
                     </div>
 
