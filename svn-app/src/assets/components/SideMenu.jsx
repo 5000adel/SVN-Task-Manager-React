@@ -4,6 +4,8 @@ export default function SideMenu() {
 
         <div className='side-menu-container'>
             <div className='header' style={{ fontSize: '20px' }}>Menu</div>
+
+            
             <div className='sub-container'>
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layers" viewBox="0 0 16 16">
@@ -18,6 +20,8 @@ export default function SideMenu() {
                     <>Account Settings</>
                 </button>
             </div>
+
+
             <div className='sub-container'>
                 <div className='overview'>
                     <div className='flex-item'>
@@ -38,6 +42,7 @@ export default function SideMenu() {
                     </div>
                 </div>
             </div>
+
 
             <div className='sub-container' style={{flex:'1'}}>
                 <div className='overview' style={{flex:'1'}}>
