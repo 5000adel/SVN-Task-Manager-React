@@ -105,16 +105,15 @@ export default function SideMenu({ role }) {
 
 
             <div className='sub-container' style={{ flex: '1' }}>
-                <div className='overview' style={{ flex: '1' }}>
-                    <div style={{ fontSize: '18px', textAlign: 'left' }}>Instructions
-                        <subtitle style={{ textAlign: 'left', fontSize: '14px', fontWeight: '100' }}>
-                            <ul>
-                                <li><span style={{ fontWeight: 'bold' }}>Employee</span>: sees only assigned “To Do” tasks.</li>
-                                <li><span style={{ fontWeight: 'bold' }}>Supervisor</span>: create tasks, place assignments.</li>
-                                <li><span style={{ fontWeight: 'bold' }}>Admin</span>: manage tasks, employees, and accounts</li>
-                            </ul>
-                        </subtitle>
-                    </div>
+                <div className='overview' style={{ fontSize: '18px', textAlign: 'left' }}>Instructions
+                    <subtitle style={{ textAlign: 'left', fontSize: '14px', fontWeight: '100' }}>
+                        <ul>
+                            <li><span style={{ fontWeight: 'bold' }}>Employee</span>: sees only assigned “To Do” tasks.</li>
+                            <li><span style={{ fontWeight: 'bold' }}>Supervisor</span>: create tasks, place assignments.</li>
+                            <li><span style={{ fontWeight: 'bold' }}>Admin</span>: manage tasks, employees, and accounts</li>
+                        </ul>
+                    </subtitle>
+
                 </div>
             </div>
 
