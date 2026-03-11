@@ -9,13 +9,14 @@ import Dashboard from './assets/pages/Dashboard'
 function App() {
   const [count, setCount] = useState(0);
   const [showAuth, setShowAuth] = useState(true);
+  const [role, setRole] = useState("");
 
   return (
     <>
       <div style={{ alignItems: 'center' }}>
         <Background />
-        <Dashboard onLogOut={() => setShowAuth(true)} role={"supervisor"}/>
-        {showAuth && <Auth onLogIn={() => setShowAuth(false)}/>};
+        <Dashboard onLogOut={() => setShowAuth(true)} role={role}/>
+        {showAuth && <Auth onLogIn={(selectedRole) => {setShowAuth(false); setRole(selectedRole)}}/>};
       </div>
     </>
   )
