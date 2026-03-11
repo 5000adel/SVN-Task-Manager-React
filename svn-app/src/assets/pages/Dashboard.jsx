@@ -18,7 +18,7 @@ export default function Dashboard({ onLogOut, role }) {
                 justifyContent: 'center',
                 alignItems: 'center',
                 gap: '20px',
-                height: '100vh'
+                height: '100vh',
             }}>
                 <div style={{
                     display: 'flex',
