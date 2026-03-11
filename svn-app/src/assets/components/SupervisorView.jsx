@@ -1,7 +1,7 @@
 import './styles/SupervisorView.css'
 import TaskObject from './TaskObject'
 import EmployeeCard from './EmployeeCard';
-import TaskCard from './TaskCard';
+import MinimalTaskCard from './TaskCard';
 export default function SupervisorView() {
     return (
         <div className='supervisor-view-container'>
@@ -24,9 +24,9 @@ export default function SupervisorView() {
                 <div className='supervisor-dashboard-sub-container'>
                     <div className='header' style={{ fontSize: '20px' }}>Tasks</div>
                     <div className='supervisor-body'>
-                        <TaskCard />
-                        <TaskCard />
-                        <TaskCard />
+                        <MinimalTaskCard />
+                        <MinimalTaskCard />
+                        <MinimalTaskCard />
                     </div>
                 </div>
                 <div className='supervisor-dashboard-sub-container'>
