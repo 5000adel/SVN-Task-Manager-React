@@ -14,7 +14,7 @@ export default function Dashboard({ onLogOut, role }) {
     let view;
 
     // admin and supervisor to be added
-    if (role === "admin") view = <TaskView />;
+    if (role === "admin") view = <><TaskView /> <SupervisorView /></>;
     else if (role === "employee") view = <TaskView />;
     else if (role === "supervisor") view = <SupervisorView />;
     return (
@@ -34,11 +34,11 @@ export default function Dashboard({ onLogOut, role }) {
                     <TopBar onLogOut={onLogOut} />
                     <div style={{
                         ...commonStyle,
-                        alignItems:'flex-start',
-                        flexGrow: '0'
+                        alignItems:'stretch',
+                        flexGrow: '1'
                     }}>
 
-                        <SideMenu role={role} />
+                        <SideMenu role={role}/>
 
                         <div style={{ ...commonStyle, display: 'flex', flexDirection: 'column' }}>
                             {view}
