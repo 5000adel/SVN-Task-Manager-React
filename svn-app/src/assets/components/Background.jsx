@@ -4,9 +4,10 @@ const bg = {
     background: '#000720',
     width: '100vw',
     height: '100vh',
-    position: 'absolute',
+    position: 'fixed',
     top: '0',
     right: '0',
+    overflowY: 'auto'
 };
 
 const glowbase = {
@@ -18,9 +19,9 @@ const glowbase = {
     zIndex: '0',
 }
 
-export default function Background({ children }) {
+export default function Background({ children, blur }) {
     return (
-        <div style={bg}>
+        <div style={{ ...bg, backdropFilter: blur ? 'blur(7px)' : 'none' }}>
             <div style={{
                 ...glowbase,
                 width: '500px',

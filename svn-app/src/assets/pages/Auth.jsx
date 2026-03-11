@@ -1,12 +1,12 @@
 import '../styles/Auth.css'
-import Blur from '../components/Blur'
+import Background from '../components/Background';
 import { useState } from 'react';
 
 export default function Auth({ onLogIn }) {
     const [role, setRole] = useState("worker");
 
     return (
-        <Blur>
+        <Background blur>
             <div className='parent-container'>
                 <div className='container'>
                     <div className='header'>
@@ -39,6 +39,6 @@ export default function Auth({ onLogIn }) {
                     </div>
                 </div>
             </div>
-        </Blur>
+        </Background>
     )
 }
