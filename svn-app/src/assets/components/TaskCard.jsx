@@ -1,5 +1,5 @@
-import './styles/TaskObject.css'
-export default function TaskObject() {
+import './styles/TaskCard.css'
+export default function TaskCard() {
     return (
         <div className="object-container">
             <div style={{ fontWeight: '700', fontSize: '18px', fontFamily: '"Syne", sans-serif' }}>[Task Placeholder]</div>

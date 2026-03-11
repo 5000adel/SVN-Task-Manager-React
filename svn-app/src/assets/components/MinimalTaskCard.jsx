@@ -1,4 +1,4 @@
-import './styles/TaskCard.css'
+import './styles/MinimalTaskCard.css'
 export default function MinimalTaskCard() {
     return (
 

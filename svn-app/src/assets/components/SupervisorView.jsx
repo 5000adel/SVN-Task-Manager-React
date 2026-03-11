@@ -1,7 +1,8 @@
 import './styles/SupervisorView.css'
-import TaskObject from './TaskObject'
 import EmployeeCard from './EmployeeCard';
-import MinimalTaskCard from './TaskCard';
+import MinimalTaskCard from './MinimalTaskCard';
+import TaskCard from './TaskCard'
+
 export default function SupervisorView() {
     return (
         <div className='supervisor-view-container'>
