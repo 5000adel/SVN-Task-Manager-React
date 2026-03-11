@@ -1,4 +1,4 @@
-.worker-card-object-container {
+.employee-card-object-container {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
     margin: 10px;
 }
 
-.worker-status-container{
+.employee-status-container{
     display: flex;
     flex-direction: column;
     font-size: 10px;
@@ -21,7 +21,7 @@
     
 }
 
-.worker-status-container > div{
+.employee-status-container > div{
     display: flex;
     flex-direction: row;
     gap: 5px;

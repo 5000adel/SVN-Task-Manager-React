@@ -20,7 +20,7 @@ export default function TaskView() {
             </div>
             <div className='footer'>
                 <div>SVN Yard - Safety First</div>
-                <div style={{marginLeft:'auto', color:'#ffffff94'}}>Role: WORKER </div>
+                <div style={{marginLeft:'auto', color:'#ffffff94'}}>Role: EMPLOYEE </div>
             </div>
         </div>
     );

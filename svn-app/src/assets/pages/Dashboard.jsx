@@ -8,7 +8,7 @@ export default function Dashboard({ onLogOut, role }) {
 
     // admin and supervisor to be added
     if (role === "admin") view = <TaskView />;
-    else if (role === "worker") view = <TaskView />;
+    else if (role === "employee") view = <TaskView />;
     else if (role === "supervisor") view = <SupervisorView />;
     return (
 

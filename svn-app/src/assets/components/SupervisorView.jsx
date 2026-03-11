@@ -1,6 +1,6 @@
 import './styles/SupervisorView.css'
 import TaskObject from './TaskObject'
-import WorkerCard from './WorkerCard';
+import EmployeeCard from './EmployeeCard';
 import TaskCard from './TaskCard';
 export default function SupervisorView() {
     return (
@@ -11,14 +11,14 @@ export default function SupervisorView() {
 
             <div className='supervisor-dashboard-container'>
                 <div className='supervisor-dashboard-sub-container'>
-                    <div className='header' style={{ fontSize: '20px' }}>Workers</div>
+                    <div className='header' style={{ fontSize: '20px' }}>Employees</div>
                     <div className='supervisor-body'>
-                        <WorkerCard />
-                        <WorkerCard />
-                        <WorkerCard />
-                        <WorkerCard />
-                        <WorkerCard />
-                        <WorkerCard />
+                        <EmployeeCard />
+                        <EmployeeCard />
+                        <EmployeeCard />
+                        <EmployeeCard />
+                        <EmployeeCard />
+                        <EmployeeCard />
                     </div>
                 </div>
                 <div className='supervisor-dashboard-sub-container'>
@@ -41,8 +41,8 @@ export default function SupervisorView() {
                             <subtitle>[overdue tasks]</subtitle>
                         </div>
                         <div className='supervisor-overview-container'>
-                            Workers
-                            <subtitle>[workers]</subtitle>
+                            Employees
+                            <subtitle>[Employees]</subtitle>
                         </div>
                         <div className='supervisor-overview-container'>
                             Total Tasks

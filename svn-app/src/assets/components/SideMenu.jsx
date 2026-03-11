@@ -23,12 +23,12 @@ export default function SideMenu({ role }) {
                 <div style={{textAlign:'left', padding:' 20px 0 0 15px'}}>Supervisor Menu</div>
                 {renderRoleButtons("supervisor")}
                 
-                <div style={{textAlign:'left', padding:' 20px 0 0 15px'}}>Worker Menu</div>
-                {renderRoleButtons("worker")}
+                <div style={{textAlign:'left', padding:' 20px 0 0 15px'}}>Employee Menu</div>
+                {renderRoleButtons("employee")}
             </>
         );
 
-        if (role === "worker") return (
+        if (role === "employee") return (
             <>
                 <button>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layers" viewBox="0 0 16 16">
@@ -75,7 +75,7 @@ export default function SideMenu({ role }) {
                 <div className='overview'>
                     <div className='flex-item'>
                         [placeholder]
-                        <subtitle>Workers</subtitle>
+                        <subtitle>Employees</subtitle>
                     </div>
                     <div className='flex-item'>
                         [placeholder]
@@ -98,9 +98,9 @@ export default function SideMenu({ role }) {
                     <div style={{ fontSize: '18px', textAlign: 'left' }}>Instructions
                         <subtitle style={{ textAlign: 'left', fontSize: '14px', fontWeight: '100' }}>
                             <ul>
-                                <li><span style={{ fontWeight: 'bold' }}>Worker</span>: sees only assigned “To Do” tasks.</li>
+                                <li><span style={{ fontWeight: 'bold' }}>Employee</span>: sees only assigned “To Do” tasks.</li>
                                 <li><span style={{ fontWeight: 'bold' }}>Supervisor</span>: create tasks, place assignments.</li>
-                                <li><span style={{ fontWeight: 'bold' }}>Admin</span>: manage tasks, workers, and accounts</li>
+                                <li><span style={{ fontWeight: 'bold' }}>Admin</span>: manage tasks, employees, and accounts</li>
                             </ul>
                         </subtitle>
                     </div>
