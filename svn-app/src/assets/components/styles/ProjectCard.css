@@ -1,0 +1,41 @@
+.project-card-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    border-left: 2px solid #cfccf8a1;
+    background: #4140506b;
+    border-radius: 10px;
+    text-align: left;
+    padding: 15px;
+    gap: 5px;
+    width: calc(100% - 60px);
+    overflow: hidden;
+    height: 90px;
+    margin: 10px;
+    transition: background 0.2s ease-out;
+
+}
+
+.project-card-container:hover{
+    background: #41405096;
+}
+
+.project-status-container{
+    display: flex;
+    flex-direction: row;
+    font-size: 18px;
+    gap: 10px;
+    cursor:'pointer';
+}
+
+.project-status-container > div{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    border: 1px solid #cfccf8a1;
+    padding: 0 15px;
+    border-radius: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+}
