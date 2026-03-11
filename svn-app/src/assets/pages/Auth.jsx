@@ -3,7 +3,7 @@ import Background from '../components/Background';
 import { useState } from 'react';
 
 export default function Auth({ onLogIn }) {
-    const [role, setRole] = useState("worker");
+    const [role, setRole] = useState("employee");
 
     return (
         <Background blur>
