@@ -3,7 +3,7 @@ import TaskView from "../components/TaskView";
 import Background from "../components/Background"
 import TopBar from "../components/TopBar";
 import SupervisorView from "../components/SupervisorView";
-export default function Dashboard({ onLogOut , role}) {
+export default function Dashboard({ onLogOut, role }) {
     let view;
 
     // admin and supervisor to be added
@@ -35,7 +35,7 @@ export default function Dashboard({ onLogOut , role}) {
                         flexGrow: '0'
                     }}>
 
-                        <SideMenu />
+                        <SideMenu role={role} />
                         {view}
                     </div>
                 </div>
