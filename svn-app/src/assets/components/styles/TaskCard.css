@@ -2,7 +2,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    border: 1px solid #cfccf8a1;
+    border-left: 2px solid #cfccf8a1;
     background: #414050a1;
     border-radius: 10px;
     text-align: left;
@@ -12,24 +12,28 @@
     overflow: hidden;
     height: 90px;
     margin: 10px;
+    transition: background 0.2s ease-out;
 }
 
-.task-status-container{
+.object-container:hover {
+    background: #7e7c9ba1;
+}
+
+.task-status-container {
     display: flex;
     flex-direction: row;
     font-size: 18px;
     gap: 10px;
-    
+
 }
 
-.task-status-container > div{
+.task-status-container>div {
     display: flex;
     flex-direction: row;
     gap: 5px;
     align-items: center;
-    border: 2px solid #cfccf8a1;
     padding: 0 15px;
-    border-radius: 20px;
+    border-radius: 15px;
     font-weight: 900;
     text-transform: uppercase;
 }

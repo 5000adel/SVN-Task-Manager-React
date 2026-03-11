@@ -7,7 +7,7 @@ const bg = {
     position: 'fixed',
     top: '0',
     right: '0',
-    overflowY: 'auto'
+    overflowY:'auto'
 };
 
 const glowbase = {

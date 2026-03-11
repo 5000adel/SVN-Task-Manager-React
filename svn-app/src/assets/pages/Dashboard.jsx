@@ -3,7 +3,14 @@ import TaskView from "../components/TaskView";
 import Background from "../components/Background"
 import TopBar from "../components/TopBar";
 import SupervisorView from "../components/SupervisorView";
+import ProjectStatusView from "../components/ProjectStatusView";
 export default function Dashboard({ onLogOut, role }) {
+    const commonStyle = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '20px',
+    }
     let view;
 
     // admin and supervisor to be added
@@ -14,11 +21,8 @@ export default function Dashboard({ onLogOut, role }) {
 
         <Background>
             <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: '20px',
-                height: '100vh',
+                ...commonStyle,
+                paddingTop: '3vh'
             }}>
                 <div style={{
                     display: 'flex',
@@ -29,15 +33,18 @@ export default function Dashboard({ onLogOut, role }) {
                 }}>
                     <TopBar onLogOut={onLogOut} />
                     <div style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        gap: '20px',
+                        ...commonStyle,
+                        alignItems:'flex-start',
                         flexGrow: '0'
                     }}>
 
                         <SideMenu role={role} />
-                        {view}
+
+                        <div style={{ ...commonStyle, display: 'flex', flexDirection: 'column' }}>
+                            {view}
+                        </div>
                     </div>
+                    <ProjectStatusView />
                 </div>
 
             </div>

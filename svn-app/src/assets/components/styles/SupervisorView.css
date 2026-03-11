@@ -10,7 +10,7 @@
 
 .supervisor-dashboard-sub-container {
     border: 1px solid #cfccf841;
-    background: #b5b2da52;
+    background: #4f4d5f52;
     border-radius: 10px;
     height: calc(100% - 2px);
     min-width: 300px;
@@ -18,9 +18,9 @@
     scrollbar-width: thin;
 }
 
-.supervisor-dashboard-sub-container .header{
+.supervisor-dashboard-sub-container .header {
     position: sticky;
-    background: #807da1;
+    background: #5a5b78;
     top: 0;
 }
 
@@ -70,16 +70,23 @@ button {
 
     box-sizing: border-box;
     background: #414050a1;
-    
 
-    border: 1px solid #cccdddc0;
+
+    border-left: 2px solid #cccdddc0;
     border-radius: 10px;
     padding: 10px;
-    
+
     color: #ffffffc0;
+
+    transition: background 0.2s ease-out;
+
 }
 
-.supervisor-overview-container subtitle{
+.supervisor-overview-container:hover {
+    background: #7e7c9ba1;
+}
+
+.supervisor-overview-container subtitle {
     font-family: 'DM Sans', sans-serif;
     font-size: 12px;
     color: #ffffff94;

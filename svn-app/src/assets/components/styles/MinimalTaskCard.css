@@ -2,7 +2,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    border: 1px solid #cfccf8a1;
+    border-left: 2px solid #cfccf8a1;
     background: #414050a1;
     border-radius: 10px;
     text-align: left;
@@ -10,6 +10,11 @@
     overflow: hidden;
     height: 90px;
     margin: 10px;
+    transition: background 0.2s ease-out;
+}
+
+.task-card-object-container:hover {
+    background: #7e7c9ba1;
 }
 
 .task-card-status-container{

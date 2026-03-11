@@ -1,5 +1,5 @@
 import './styles/TaskView.css'
-import TaskObject from './TaskObject'
+import TaskCard from './TaskCard'
 export default function TaskView() {
     return (
         <div className='task-view-container'>
@@ -13,10 +13,10 @@ export default function TaskView() {
                 </div>
             </div>
             <div className='task-container'>
-                <TaskObject />
-                <TaskObject />
-                <TaskObject />
-                <TaskObject />
+                <TaskCard />
+                <TaskCard />
+                <TaskCard />
+                <TaskCard />
             </div>
             <div className='footer'>
                 <div>SVN Yard - Safety First</div>
