@@ -1,0 +1,136 @@
+.view-card-container-parent {
+    position: fixed;
+    inset: 0;
+    z-Index: 100;
+    backdrop-filter: blur(7px);
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.view-card-container {
+    background: #1a1a2e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 24px;
+    min-width: 500px;
+    max-width: 600px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+
+.view-card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.view-card-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    flex: 1;
+}
+
+.view-card-status {
+    text-transform: uppercase;
+    background: #85cc85a1;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.view-card-close {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.view-card-description {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 8px;
+}
+
+.view-card-tags {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.view-card-tag {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 13px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.view-card-tag-priority { background: #f8eacc54; }
+.view-card-tag-deadline { background: #cfccf854; }
+.view-card-tag-supervisor { background: #f8cfcc54; }
+
+.view-card-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 16px 0;
+}
+
+.view-card-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.view-card-detail-row {
+    display: flex;
+    gap: 10px;
+}
+
+.view-card-detail-label {
+    color: rgba(255, 255, 255, 0.4);
+    width: 100px;
+}
+
+.view-card-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 16px;
+}
+
+.view-card-actions button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    transition: background 0.2s;
+}
+
+.view-card-actions button:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.view-card-actions .view-card-btn-primary {
+    background: #a78bfa;
+    border-color: #a78bfa;
+}
+
+.view-card-actions .view-card-btn-primary:hover {
+    background: #9163f7;
+}

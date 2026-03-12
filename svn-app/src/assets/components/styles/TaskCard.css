@@ -17,6 +17,7 @@
 
 .object-container:hover {
     background: #7e7c9ba1;
+    cursor: pointer;
 }
 
 .task-status-container {
