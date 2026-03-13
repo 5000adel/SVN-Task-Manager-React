@@ -1,5 +1,4 @@
 import './styles/ManageTaskView.css'
-import './styles/ManageTaskView.modal.css'
 import { useState } from 'react'
 import { useApp } from '../../context/AppContext'
 import { useToast } from '../../context/ToastContext'
