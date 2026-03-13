@@ -5,25 +5,39 @@ import { useState } from 'react'
 
 const filters = ['All', 'To Do', 'In Progress', 'Completed', 'Overdue'];
 
-export default function TaskView() {
+export default function TaskView({ searchQuery = '' }) {
     const { currentUser, tasks, taskAssignments, loading } = useApp();
     const [activeFilter, setActiveFilter] = useState('All');
 
-    // Get only tasks assigned to this employee
     const assignedTaskIds = taskAssignments
         .filter(a => a.employee_user_id === currentUser?.user_id)
         .map(a => a.task_id);
 
     const myTasks = tasks.filter(t => assignedTaskIds.includes(t.task_id));
 
-    const filteredTasks = activeFilter === 'All'
-        ? myTasks
-        : myTasks.filter(t => t.task_status === activeFilter);
+    const filteredTasks = myTasks
+        .filter(t => activeFilter === 'All' || t.task_status === activeFilter)
+        .filter(t => {
+            if (!searchQuery) return true;
+            const q = searchQuery.toLowerCase();
+            return (
+                t.task_name.toLowerCase().includes(q) ||
+                (t.task_description ?? '').toLowerCase().includes(q) ||
+                t.task_status.toLowerCase().includes(q)
+            );
+        });
 
     return (
-        <div className='task-view-container' style={{marginBottom:'20px'}}>
+        <div className='task-view-container'>
             <div className='tv-header'>
-                <div className='tv-title'>Tasks</div>
+                <div className='tv-title'>
+                    Tasks
+                    {searchQuery && (
+                        <span style={{ fontSize: '13px', fontWeight: '400', color: 'rgba(255,255,255,0.4)', marginLeft: '10px', fontFamily: '"DM Sans",sans-serif' }}>
+                            "{searchQuery}"
+                        </span>
+                    )}
+                </div>
                 <div className='tv-filters'>
                     {filters.map(f => (
                         <button
@@ -39,17 +53,13 @@ export default function TaskView() {
 
             <div className='task-container'>
                 {loading ? (
-                    <div style={{ color: 'rgba(255,255,255,0.3)', fontFamily: '"DM Sans",sans-serif', padding: '20px' }}>
-                        Loading tasks...
-                    </div>
+                    <div style={{ color: 'rgba(255,255,255,0.3)', fontFamily: '"DM Sans",sans-serif', padding: '20px' }}>Loading tasks...</div>
                 ) : filteredTasks.length === 0 ? (
                     <div style={{ color: 'rgba(255,255,255,0.3)', fontFamily: '"DM Sans",sans-serif', padding: '20px' }}>
-                        No tasks found
+                        {searchQuery ? `No tasks match "${searchQuery}"` : 'No tasks found'}
                     </div>
                 ) : (
-                    filteredTasks.map(task => (
-                        <TaskCard key={task.task_id} task={task} />
-                    ))
+                    filteredTasks.map(task => <TaskCard key={task.task_id} task={task} />)
                 )}
             </div>
 
