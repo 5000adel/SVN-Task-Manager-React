@@ -1,0 +1,375 @@
+.manage-accounts-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    background: #414050a1;
+    border: 1px solid #cfccf841;
+    border-radius: 12px;
+    width: 60vw;
+    height: 100%;
+    box-sizing: border-box;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #a78bfa #f1f1f100;
+}
+
+.ma-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ma-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: #ffffffc4;
+}
+
+.ma-add-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #a78bfa;
+    background: #a78bfa54;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+    height: unset;
+}
+
+.ma-add-btn:hover { background: #a78bfa; }
+
+/* ── Toolbar ──────────────────────────────────────────────── */
+.ma-toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.ma-search {
+    flex: 1;
+    min-width: 200px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 9px 14px;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.ma-search:focus { border-color: #a78bfa; }
+.ma-search::placeholder { color: rgba(255, 255, 255, 0.2); }
+
+.ma-role-filters {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.ma-filter-btn {
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: unset;
+}
+
+.ma-filter-btn:hover,
+.ma-filter-btn.active {
+    background: #a78bfa54;
+    border-color: #a78bfa;
+    color: white;
+}
+
+/* ── Table ────────────────────────────────────────────────── */
+.ma-table {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.ma-table-header {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1fr 1fr 1fr 1.2fr;
+    padding: 8px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.ma-table-row {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr 1fr 1fr 1fr 1.2fr;
+    align-items: center;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #ffffffc4;
+    transition: background 0.2s;
+}
+
+.ma-table-row:hover { background: rgba(255, 255, 255, 0.07); }
+
+.ma-user-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.ma-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #a78bfa54;
+    border: 1px solid #a78bfa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 15px;
+    color: #a78bfa;
+    flex-shrink: 0;
+}
+
+.ma-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #ffffffc4;
+}
+
+.ma-username {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.ma-role-badge,
+.ma-status-badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    width: fit-content;
+}
+
+.ma-exp {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.ma-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.ma-actions button {
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: unset;
+}
+
+.ma-actions button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.ma-delete-btn {
+    border-color: #e9919180 !important;
+    color: #e99191 !important;
+}
+
+.ma-delete-btn:hover {
+    background: #e9919120 !important;
+}
+
+.ma-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+}
+
+/* ── Modal ────────────────────────────────────────────────── */
+.ma-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ma-modal {
+    background: #1a1a2e;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    padding: 24px;
+    min-width: 480px;
+    max-width: 540px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+}
+
+.ma-modal-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ma-modal-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: #ffffffc4;
+}
+
+.ma-modal-close {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 18px;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: color 0.2s;
+    height: unset;
+}
+
+.ma-modal-close:hover { color: white; }
+
+.ma-modal-body {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ma-form-row {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+}
+
+.ma-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.ma-form-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.ma-form-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.ma-form-input:focus { border-color: #a78bfa; }
+.ma-form-input::placeholder { color: rgba(255, 255, 255, 0.2); }
+
+.ma-form-select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='rgba(255,255,255,0.4)' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+}
+
+.ma-form-select option { background: #1a1a2e; color: white; }
+
+.ma-modal-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ma-cancel-btn {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: unset;
+}
+
+.ma-cancel-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+}
+
+.ma-save-btn {
+    padding: 8px 20px;
+    border-radius: 8px;
+    border: 1px solid #a78bfa;
+    background: #a78bfa;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+    height: unset;
+}
+
+.ma-save-btn:hover { background: #9163f7; }

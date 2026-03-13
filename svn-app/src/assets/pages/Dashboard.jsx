@@ -9,6 +9,7 @@ import LogView from "../components/LogView";
 import ManageTaskView from "../components/ManageTaskView";
 import ViewEmployees from "../components/ViewEmployees";
 import AccountSettings from "../components/AccountSettings";
+import ManageAccounts from "../components/ManageAccounts";
 
 export default function Dashboard({ onLogOut, role }) {
     const commonStyle = {
@@ -19,20 +20,21 @@ export default function Dashboard({ onLogOut, role }) {
     }
 
     const defaultView = () => {
-        if (role === "admin") return <><TaskView /><SupervisorView /></>;
-        if (role === "employee") return <TaskView />;
+        if (role === "admin")      return <><TaskView /><SupervisorView /></>;
+        if (role === "employee")   return <TaskView />;
         if (role === "supervisor") return <SupervisorView />;
     }
 
     const [view, setView] = useState(defaultView());
 
     function handleNavigate(destination) {
-        if (destination === 'dashboard') setView(defaultView());
-        else if (destination === 'logs') setView(<LogView />);
+        if      (destination === 'dashboard')  setView(defaultView());
+        else if (destination === 'logs')       setView(<LogView />);
         else if (destination === 'managetasks') setView(<ManageTaskView />);
-        else if (destination === 'employees') setView(<ViewEmployees />);
-        else if (destination === 'settings') setView(<AccountSettings />);
-        else if (destination === 'tasks') setView(<TaskView />);
+        else if (destination === 'employees')  setView(<ViewEmployees />);
+        else if (destination === 'settings')   setView(<AccountSettings />);
+        else if (destination === 'tasks')      setView(<TaskView />);
+        else if (destination === 'accounts')   setView(<ManageAccounts />);
     }
 
     return (
@@ -48,7 +50,13 @@ export default function Dashboard({ onLogOut, role }) {
                     <TopBar onLogOut={onLogOut} />
                     <div style={{ ...commonStyle, alignItems: 'stretch', flex: '1' }}>
                         <SideMenu role={role} onNavigate={handleNavigate} />
-                        <div style={{ ...commonStyle, display: 'flex', flexDirection: 'column' }}>
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            flex: 1,
+                            overflowY: 'auto',
+                            alignItems: 'stretch',
+                        }}>
                             {view}
                         </div>
                     </div>

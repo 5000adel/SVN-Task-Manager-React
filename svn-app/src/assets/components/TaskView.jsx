@@ -21,7 +21,7 @@ export default function TaskView() {
         : myTasks.filter(t => t.task_status === activeFilter);
 
     return (
-        <div className='task-view-container'>
+        <div className='task-view-container' style={{marginBottom:'20px'}}>
             <div className='tv-header'>
                 <div className='tv-title'>Tasks</div>
                 <div className='tv-filters'>

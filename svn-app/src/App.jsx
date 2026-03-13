@@ -3,6 +3,7 @@ import './App.css'
 import Auth from './assets/pages/Auth'
 import Dashboard from './assets/pages/Dashboard'
 import { AppProvider } from './context/AppContext'
+import { ToastProvider } from './context/ToastContext'
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null);
@@ -20,19 +21,21 @@ function App() {
 
     return (
         <AppProvider currentUser={currentUser}>
-            <div style={{ alignItems: 'center' }}>
-                {!showAuth && (
-                    <Dashboard
-                        onLogOut={handleLogout}
-                        role={currentUser?.role}
-                    />
-                )}
-                {showAuth && (
-                    <Auth onLogIn={handleLogin} />
-                )}
-            </div>
+            <ToastProvider>
+                <div style={{ alignItems: 'center' }}>
+                    {!showAuth && (
+                        <Dashboard
+                            onLogOut={handleLogout}
+                            role={currentUser?.role}
+                        />
+                    )}
+                    {showAuth && (
+                        <Auth onLogIn={handleLogin} />
+                    )}
+                </div>
+            </ToastProvider>
         </AppProvider>
     );
 }
 
-export default App
+export default App;

@@ -6,7 +6,7 @@
     background: #414050a1;
     border: 1px solid #cfccf841;
     border-radius: 12px;
-    min-width: 600px;
+    min-width: 60vw;
     height: 100%;
     box-sizing: border-box;
     max-height: unset;  /* remove any max-height limits */
