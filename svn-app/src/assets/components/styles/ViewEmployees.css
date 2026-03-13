@@ -1,0 +1,154 @@
+.view-employees-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    background: #414050a1;
+    border: 1px solid #cfccf841;
+    border-radius: 12px;
+    min-width: 600px;
+    height: 100%;
+    box-sizing: border-box;
+    max-height: unset;  /* remove any max-height limits */
+}
+
+.ve-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ve-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: #ffffffc4;
+}
+
+.ve-add-btn {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #a78bfa;
+    background: #a78bfa54;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.ve-add-btn:hover {
+    background: #a78bfa;
+}
+
+.ve-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ve-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 10px;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.ve-card:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.ve-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #a78bfa54;
+    border: 1px solid #a78bfa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 18px;
+    color: #a78bfa;
+    flex-shrink: 0;
+}
+
+.ve-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.ve-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #ffffffc4;
+}
+
+.ve-role {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.ve-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.ve-tasks {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.ve-joined {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.ve-status-badge {
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.ve-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.ve-actions button {
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.ve-actions button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}

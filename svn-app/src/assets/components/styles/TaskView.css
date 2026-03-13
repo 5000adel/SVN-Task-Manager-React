@@ -2,45 +2,77 @@
     display: flex;
     flex-direction: column;
     border: 1px solid #cfccf841;
-    background: #b5b2da52;
-    border-radius: 10px;
+    background: #414050a1;
+    border-radius: 12px;
     width: 60vw;
-    height: 80vh;
+    height: 100%;
+    box-sizing: border-box;
 }
 
-.footer {
-    margin-top: auto;
+.tv-header {
     display: flex;
     flex-direction: row;
-    border-top: 1px solid #cfccf841;
-    padding: 10px;
-    gap: 10px;
-    font-family: 'Syne', sans-serif;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid #cfccf841;
 }
 
-/* add footer to main styles */
-button {
-    height: 24px;
-    padding: auto;
-    font-size: 12px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 15px;
+.tv-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: #ffffffc4;
+}
+
+.tv-filters {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.tv-filter-btn {
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: unset;
+}
+
+.tv-filter-btn:hover,
+.tv-filter-btn.active {
+    background: #a78bfa54;
+    border-color: #a78bfa;
+    color: white;
 }
 
 .task-container {
-    position: relative;
-    margin: 20px;
-    align-self: center;
-    padding: 20px;
+    flex: 1;
+    margin: 16px 20px;
+    padding: 16px;
     border: 1px solid #cfccf841;
-    background: #b5b2da52;
+    background: rgba(255, 255, 255, 0.02);
     border-radius: 10px;
-    width: calc(100% - 80px);
-    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
     gap: 10px;
-    align-items: center;
+    overflow-y: auto;
     scrollbar-width: thin;
-    scrollbar-color: #dbdbdb #f1f1f100;
-    overflow: auto;
+    scrollbar-color: #a78bfa #f1f1f100;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    border-top: 1px solid #cfccf841;
+    padding: 10px 20px;
+    gap: 10px;
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    color: #ffffffc4;
 }

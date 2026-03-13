@@ -1,0 +1,138 @@
+.log-view-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    background: #414050a1;
+    border: 1px solid #cfccf841;
+    border-radius: 12px;
+    width: 60vw;
+    overflow-y: auto;
+
+    height: 100%;
+    box-sizing: border-box;
+    max-height: unset;  /* remove any max-height limits */
+
+
+}
+
+.log-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.log-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: #ffffffc4;
+}
+
+.log-subtitle {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.log-filters {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.log-filter-btn {
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.log-filter-btn:hover,
+.log-filter-btn.active {
+    background: #a78bfa54;
+    border-color: #a78bfa;
+    color: white;
+}
+
+.log-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.log-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.log-item:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.log-item-left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+}
+
+.log-type-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    white-space: nowrap;
+}
+
+.log-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.log-action {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #ffffffc4;
+}
+
+.log-detail {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.log-item-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+}
+
+.log-user {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #a78bfa;
+}
+
+.log-time {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.3);
+}

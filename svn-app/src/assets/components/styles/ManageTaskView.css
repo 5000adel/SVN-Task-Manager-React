@@ -1,0 +1,205 @@
+.manage-task-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 20px;
+    background: #414050a1;
+    border: 1px solid #cfccf841;
+    border-radius: 12px;
+    width: 60vw;
+    height: 100%;
+    box-sizing: border-box;
+    max-height: unset;
+    /* remove any max-height limits */
+}
+
+.manage-task-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.manage-task-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 22px;
+    color: #ffffffc4;
+}
+
+.manage-task-add {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #a78bfa;
+    background: #a78bfa54;
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.manage-task-add:hover {
+    background: #a78bfa;
+}
+
+.manage-task-filters {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+.mt-filter-btn {
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mt-filter-btn:hover,
+.mt-filter-btn.active {
+    background: #a78bfa54;
+    border-color: #a78bfa;
+    color: white;
+}
+
+.manage-task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.manage-task-list-header {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+    padding: 8px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.05em;
+}
+
+.manage-task-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: #ffffffc4;
+    transition: background 0.2s;
+}
+
+.manage-task-row:hover {
+    background: rgba(255, 255, 255, 0.07);
+}
+
+.mt-task-title {
+    font-weight: 500;
+}
+
+.mt-assignee {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 13px;
+}
+
+.mt-badge {
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 900;
+    text-transform: uppercase;
+    width: fit-content;
+}
+
+.mt-due {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.mt-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.mt-actions button {
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mt-actions button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.mt-project-selector {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mt-project-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.mt-project-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.mt-project-pill {
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mt-project-pill:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.mt-project-pill.active {
+    background: #a78bfa54;
+    border-color: #a78bfa;
+    color: white;
+}
+
+.mt-empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
