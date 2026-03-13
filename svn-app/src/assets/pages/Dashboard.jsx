@@ -31,7 +31,7 @@ export default function Dashboard({ onLogOut, role }) {
         else if (destination === 'logs') setView(<LogView />);
         else if (destination === 'managetasks') setView(<ManageTaskView />);
         else if (destination === 'employees') setView(<ViewEmployees />);
-        else if (destination === 'settings') setView(<AccountSettings role={role} />);
+        else if (destination === 'settings') setView(<AccountSettings />);
         else if (destination === 'tasks') setView(<TaskView />);
     }
 

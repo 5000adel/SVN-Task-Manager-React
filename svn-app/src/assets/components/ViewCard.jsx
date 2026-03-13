@@ -1,55 +1,66 @@
 import './styles/ViewCard.css'
 import ProgressBar from './ProgressBar';
+import { useApp } from '../../context/AppContext'
 
-export default function ViewCard({ onClose, cardType }) {
+export default function ViewCard({ onClose, cardType, data = {} }) {
+    const { getUserById, getTasksForProject } = useApp();
 
     if (cardType === "task") {
+        const { task, supervisorName, assignment } = data;
+
         return (
             <div className="view-card-container-parent" onClick={onClose}>
-                <div className='view-card-container' onClick={(e) => e.stopPropagation()}>
+                <div className='view-card-container' onClick={e => e.stopPropagation()}>
 
-                    {/* Header */}
                     <div className='view-card-header'>
-                        <div className='view-card-title'>[Task Title]</div>
-                        <div className='view-card-status'>Active</div>
+                        <div className='view-card-title'>{task?.task_name ?? '—'}</div>
+                        <div className='view-card-status'>{task?.task_status ?? '—'}</div>
                         <button className='view-card-close' onClick={onClose}>✕</button>
                     </div>
 
-                    {/* Description */}
-                    <div className='view-card-description'>[Task Description]</div>
+                    <div className='view-card-description'>
+                        {task?.task_description ?? 'No description provided.'}
+                    </div>
 
-                    {/* Tags */}
                     <div className='view-card-tags'>
-                        <div className='view-card-tag view-card-tag-priority'>In Progress</div>
-                        <div className='view-card-tag view-card-tag-deadline'>⚠ Overdue</div>
-                        <div className='view-card-tag view-card-tag-supervisor'>👤 [Supervisor]</div>
+                        <div className='view-card-tag view-card-tag-priority'>
+                            {task?.task_status ?? '—'}
+                        </div>
+                        <div className='view-card-tag view-card-tag-deadline'>
+                            ⚠ Due {task?.target_date ?? '—'}
+                        </div>
+                        <div className='view-card-tag view-card-tag-supervisor'>
+                            👤 {supervisorName ?? 'Unassigned'}
+                        </div>
                     </div>
 
                     <div className='view-card-divider' />
 
-                    {/* Details */}
                     <div className='view-card-details'>
                         <div className='view-card-detail-row'>
                             <span className='view-card-detail-label'>Assigned to</span>
-                            <span>[Employee Name]</span>
+                            <span>
+                                {assignment
+                                    ? getUserById(assignment.employee_user_id)?.first_name + ' ' + getUserById(assignment.employee_user_id)?.last_name
+                                    : 'Unassigned'}
+                            </span>
                         </div>
                         <div className='view-card-detail-row'>
                             <span className='view-card-detail-label'>Due Date</span>
-                            <span>[Date]</span>
+                            <span>{task?.target_date ?? '—'}</span>
                         </div>
                         <div className='view-card-detail-row'>
                             <span className='view-card-detail-label'>Project</span>
-                            <span>[Project Name]</span>
+                            <span>{task?.project_id ?? '—'}</span>
                         </div>
                         <div className='view-card-detail-row'>
-                            <span className='view-card-detail-label'>Created by</span>
-                            <span>[Supervisor]</span>
+                            <span className='view-card-detail-label'>Created</span>
+                            <span>{task?.created_at ? new Date(task.created_at).toLocaleDateString() : '—'}</span>
                         </div>
                     </div>
 
                     <div className='view-card-divider' />
 
-                    {/* Actions */}
                     <div className='view-card-actions'>
                         <button>Edit</button>
                         <button className='view-card-btn-primary'>Mark Complete</button>
@@ -61,48 +72,57 @@ export default function ViewCard({ onClose, cardType }) {
     }
 
     if (cardType === "project") {
+        const { project, progress, tasks, completed, total } = data;
+
         return (
             <div className="view-card-container-parent" onClick={onClose}>
-                <div className='view-card-container' onClick={(e) => e.stopPropagation()}>
+                <div className='view-card-container' onClick={e => e.stopPropagation()}>
 
                     <div className='view-card-header'>
-                        <div className='view-card-title'>[Project Title]</div>
-                        <div className='view-card-status'>Active</div>
+                        <div className='view-card-title'>{project?.project_name ?? '—'}</div>
+                        <div className='view-card-status'>{project?.project_status ?? '—'}</div>
                         <button className='view-card-close' onClick={onClose}>✕</button>
                     </div>
 
-                    <div className='view-card-description'>[Project Description]</div>
+                    <div className='view-card-description'>
+                        {project?.project_description ?? 'No description provided.'}
+                    </div>
 
                     <div className='view-card-tags'>
-                        <div className='view-card-tag view-card-tag-priority'>📅 [Start Date]</div>
-                        <div className='view-card-tag view-card-tag-deadline'>⚠ [Due Date]</div>
+                        <div className='view-card-tag view-card-tag-priority'>
+                            📅 Start: {project?.start_date ?? '—'}
+                        </div>
+                        <div className='view-card-tag view-card-tag-deadline'>
+                            ⚠ Due: {project?.end_date ?? '—'}
+                        </div>
                     </div>
 
                     <div className='view-card-divider' />
 
-                    {/* Progress */}
                     <div className='view-card-details'>
                         <div className='view-card-detail-row'>
                             <span className='view-card-detail-label'>Progress</span>
                             <div style={{ flex: 1 }}>
-                                <ProgressBar value={6} max={10} />
+                                <ProgressBar value={completed ?? 0} max={total || 1} />
                             </div>
                         </div>
                         <div className='view-card-detail-row'>
-                            <span className='view-card-detail-label'>Supervisor</span>
-                            <span>[Supervisor Name]</span>
-                        </div>
-                        <div className='view-card-detail-row'>
-                            <span className='view-card-detail-label'>Team</span>
-                            <span>[Employee 1], [Employee 2], [Employee 3]</span>
-                        </div>
-                        <div className='view-card-detail-row'>
                             <span className='view-card-detail-label'>Tasks</span>
-                            <span>6 / 10 completed</span>
+                            <span>{completed} / {total} completed</span>
                         </div>
                         <div className='view-card-detail-row'>
-                            <span className='view-card-detail-label'>Created by</span>
-                            <span>[Admin Name]</span>
+                            <span className='view-card-detail-label'>Workers Needed</span>
+                            <span>{project?.required_workers ?? '—'}</span>
+                        </div>
+                        {progress?.remarks && (
+                            <div className='view-card-detail-row'>
+                                <span className='view-card-detail-label'>Remarks</span>
+                                <span>{progress.remarks}</span>
+                            </div>
+                        )}
+                        <div className='view-card-detail-row'>
+                            <span className='view-card-detail-label'>Created</span>
+                            <span>{project?.created_at ? new Date(project.created_at).toLocaleDateString() : '—'}</span>
                         </div>
                     </div>
 
@@ -119,40 +139,52 @@ export default function ViewCard({ onClose, cardType }) {
     }
 
     if (cardType === "employee") {
+        const { employee, employeeTasks = [] } = data;
+
+        const active    = employeeTasks.filter(t => t.task_status === 'In Progress' || t.task_status === 'To Do').length;
+        const completed = employeeTasks.filter(t => t.task_status === 'Completed').length;
+        const overdue   = employeeTasks.filter(t => t.task_status === 'Overdue').length;
+
         return (
             <div className="view-card-container-parent" onClick={onClose}>
-                <div className='view-card-container' onClick={(e) => e.stopPropagation()}>
+                <div className='view-card-container' onClick={e => e.stopPropagation()}>
 
                     <div className='view-card-header'>
-                        <div className='view-card-title'>[Employee Name]</div>
-                        <div className='view-card-status' style={{ background: '#85cc85a1' }}>Active</div>
+                        <div className='view-card-title'>
+                            {employee?.first_name} {employee?.last_name}
+                        </div>
+                        <div className='view-card-status' style={{ background: employee?.availability_status ? '#85cc85a1' : '#f8cfcc54' }}>
+                            {employee?.availability_status ? 'Active' : 'Inactive'}
+                        </div>
                         <button className='view-card-close' onClick={onClose}>✕</button>
                     </div>
 
-                    <div className='view-card-description'>[Job Title / Role]</div>
+                    <div className='view-card-description'>
+                        {employee?.role?.charAt(0).toUpperCase() + employee?.role?.slice(1)} · {employee?.experience_years} years experience
+                    </div>
 
                     <div className='view-card-divider' />
 
                     <div className='view-card-details'>
                         <div className='view-card-detail-row'>
                             <span className='view-card-detail-label'>Employee ID</span>
-                            <span>[ID]</span>
+                            <span>{employee?.user_id}</span>
                         </div>
                         <div className='view-card-detail-row'>
-                            <span className='view-card-detail-label'>Department</span>
-                            <span>[Department]</span>
+                            <span className='view-card-detail-label'>Username</span>
+                            <span>{employee?.username}</span>
                         </div>
                         <div className='view-card-detail-row'>
-                            <span className='view-card-detail-label'>Supervisor</span>
-                            <span>[Supervisor Name]</span>
+                            <span className='view-card-detail-label'>Active Tasks</span>
+                            <span>{active}</span>
                         </div>
                         <div className='view-card-detail-row'>
-                            <span className='view-card-detail-label'>Tasks</span>
-                            <span>[X] Active, [X] Completed</span>
+                            <span className='view-card-detail-label'>Completed</span>
+                            <span>{completed}</span>
                         </div>
                         <div className='view-card-detail-row'>
-                            <span className='view-card-detail-label'>Joined</span>
-                            <span>[Date]</span>
+                            <span className='view-card-detail-label'>Overdue</span>
+                            <span style={{ color: overdue > 0 ? '#e99191' : 'inherit' }}>{overdue}</span>
                         </div>
                     </div>
 

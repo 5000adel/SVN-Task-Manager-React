@@ -1,45 +1,35 @@
 import './styles/ManageTaskView.css'
 import { useState } from 'react'
-
-const projects = [
-    { id: 1, name: 'Project Alpha' },
-    { id: 2, name: 'Project Beta' },
-    { id: 3, name: 'Project Gamma' },
-]
-
-const tasksByProject = {
-    1: [
-        { id: 1, title: 'Fix roof — Section B', assignee: 'Vince', priority: 'High', status: 'In Progress', due: 'Mar 15' },
-        { id: 2, title: 'Install pipes — Unit 4', assignee: 'Daniel', priority: 'Medium', status: 'Overdue', due: 'Mar 10' },
-    ],
-    2: [
-        { id: 3, title: 'Paint walls — Block A', assignee: 'Unassigned', priority: 'Low', status: 'To Do', due: 'Mar 20' },
-    ],
-    3: [
-        { id: 4, title: 'Electrical wiring check', assignee: 'Vince', priority: 'High', status: 'Completed', due: 'Mar 8' },
-    ],
-}
+import { useApp } from '../../context/AppContext'
 
 const statusColor = {
     'In Progress': '#cfccf854',
-    'Overdue': '#f8cfcc54',
-    'To Do': '#41405054',
-    'Completed': '#85cc8554',
+    'Overdue':     '#f8cfcc54',
+    'To Do':       '#41405054',
+    'Completed':   '#85cc8554',
 }
 
-const priorityColor = {
-    'High': '#f8cfcc54',
-    'Medium': '#f8eacc54',
-    'Low': '#85cc8554',
-}
+const filters = ['All', 'To Do', 'In Progress', 'Completed', 'Overdue'];
 
 export default function ManageTaskView() {
+    const { projects, tasks, taskAssignments, getUserById, loading } = useApp();
     const [selectedProject, setSelectedProject] = useState(null);
     const [filter, setFilter] = useState('All');
 
-    const tasks = selectedProject ? tasksByProject[selectedProject] || [] : [];
-    const filters = ['All', 'To Do', 'In Progress', 'Completed', 'Overdue'];
-    const filteredTasks = filter === 'All' ? tasks : tasks.filter(t => t.status === filter);
+    const projectTasks = selectedProject
+        ? tasks.filter(t => t.project_id === selectedProject)
+        : [];
+
+    const filteredTasks = filter === 'All'
+        ? projectTasks
+        : projectTasks.filter(t => t.task_status === filter);
+
+    function getAssigneeName(task_id) {
+        const assignment = taskAssignments.find(a => a.task_id === task_id);
+        if (!assignment) return 'Unassigned';
+        const user = getUserById(assignment.employee_user_id);
+        return user ? `${user.first_name} ${user.last_name}` : 'Unassigned';
+    }
 
     return (
         <div className='manage-task-container'>
@@ -54,22 +44,25 @@ export default function ManageTaskView() {
             <div className='mt-project-selector'>
                 <div className='mt-project-label'>Select Project</div>
                 <div className='mt-project-list'>
-                    {projects.map(p => (
-                        <div
-                            key={p.id}
-                            className={`mt-project-pill ${selectedProject === p.id ? 'active' : ''}`}
-                            onClick={() => {
-                                setSelectedProject(p.id);
-                                setFilter('All');
-                            }}
-                        >
-                            {p.name}
+                    {loading ? (
+                        <div style={{ color: 'rgba(255,255,255,0.3)', fontFamily: '"DM Sans",sans-serif', fontSize: '13px' }}>
+                            Loading projects...
                         </div>
-                    ))}
+                    ) : (
+                        projects.map(p => (
+                            <div
+                                key={p.project_id}
+                                className={`mt-project-pill ${selectedProject === p.project_id ? 'active' : ''}`}
+                                onClick={() => { setSelectedProject(p.project_id); setFilter('All'); }}
+                            >
+                                {p.project_name}
+                            </div>
+                        ))
+                    )}
                 </div>
             </div>
 
-            {/* Filters — only show when project is selected */}
+            {/* Filters */}
             {selectedProject && (
                 <div className='manage-task-filters'>
                     {filters.map(f => (
@@ -86,30 +79,27 @@ export default function ManageTaskView() {
 
             {/* Task List */}
             {!selectedProject ? (
-                <div className='mt-empty-state'>
-                    Select a project to view and manage its tasks
-                </div>
+                <div className='mt-empty-state'>Select a project to view and manage its tasks</div>
             ) : filteredTasks.length === 0 ? (
-                <div className='mt-empty-state'>
-                    No tasks found for this filter
-                </div>
+                <div className='mt-empty-state'>No tasks found for this filter</div>
             ) : (
                 <div className='manage-task-list'>
                     <div className='manage-task-list-header'>
                         <span>Task</span>
                         <span>Assignee</span>
-                        <span>Priority</span>
                         <span>Due</span>
                         <span>Status</span>
                         <span></span>
                     </div>
                     {filteredTasks.map(task => (
-                        <div className='manage-task-row' key={task.id}>
-                            <span className='mt-task-title'>{task.title}</span>
-                            <span className='mt-assignee'>{task.assignee}</span>
-                            <span className='mt-badge' style={{ background: priorityColor[task.priority] }}>{task.priority}</span>
-                            <span className='mt-due'>{task.due}</span>
-                            <span className='mt-badge' style={{ background: statusColor[task.status] }}>{task.status}</span>
+                        <div className='manage-task-row' key={task.task_id}
+                            style={{ gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr' }}>
+                            <span className='mt-task-title'>{task.task_name}</span>
+                            <span className='mt-assignee'>{getAssigneeName(task.task_id)}</span>
+                            <span className='mt-due'>{task.target_date}</span>
+                            <span className='mt-badge' style={{ background: statusColor[task.task_status] }}>
+                                {task.task_status}
+                            </span>
                             <div className='mt-actions'>
                                 <button>Edit</button>
                                 <button>Delete</button>
@@ -119,5 +109,5 @@ export default function ManageTaskView() {
                 </div>
             )}
         </div>
-    )
+    );
 }

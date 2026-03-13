@@ -1,28 +1,39 @@
 import './styles/LogView.css'
-
-
-// temporary logs
-const logs = [
-    { id: 1, type: 'task', action: 'Task completed', user: 'Vince', time: '2 mins ago', detail: 'Fix roof — Section B' },
-    { id: 2, type: 'account', action: 'Account created', user: 'Admin', time: '1 hr ago', detail: 'New employee: Daniel' },
-    { id: 3, type: 'project', action: 'Project updated', user: 'Maria', time: '3 hrs ago', detail: 'Project Alpha — status changed' },
-    { id: 4, type: 'task', action: 'Task overdue', user: 'System', time: '5 hrs ago', detail: 'Install pipes — Unit 4' },
-    { id: 5, type: 'account', action: 'Password changed', user: 'Daniel', time: '1 day ago', detail: 'Account security update' },
-]
+import { useApp } from '../../context/AppContext'
+import { useState } from 'react'
 
 const typeColor = {
-    task: '#a78bfa54',
+    task:    '#a78bfa54',
     account: '#85cc8554',
     project: '#f8eacc54',
 }
 
 const typeLabel = {
-    task: 'Task',
+    task:    'Task',
     account: 'Account',
     project: 'Project',
 }
 
+const filterOptions = ['All', 'Task', 'Account', 'Project'];
+
+function timeAgo(timestamp) {
+    const diff = Date.now() - new Date(timestamp).getTime();
+    const mins  = Math.floor(diff / 60000);
+    const hours = Math.floor(diff / 3600000);
+    const days  = Math.floor(diff / 86400000);
+    if (mins < 60)  return `${mins} min${mins !== 1 ? 's' : ''} ago`;
+    if (hours < 24) return `${hours} hr${hours !== 1 ? 's' : ''} ago`;
+    return `${days} day${days !== 1 ? 's' : ''} ago`;
+}
+
 export default function LogView() {
+    const { logs, loading } = useApp();
+    const [activeFilter, setActiveFilter] = useState('All');
+
+    const filteredLogs = activeFilter === 'All'
+        ? logs
+        : logs.filter(l => l.entity_type === activeFilter.toLowerCase());
+
     return (
         <div className='log-view-container'>
             <div className='log-header'>
@@ -31,31 +42,51 @@ export default function LogView() {
             </div>
 
             <div className='log-filters'>
-                <button className='log-filter-btn active'>All</button>
-                <button className='log-filter-btn'>Tasks</button>
-                <button className='log-filter-btn'>Accounts</button>
-                <button className='log-filter-btn'>Projects</button>
+                {filterOptions.map(f => (
+                    <button
+                        key={f}
+                        className={`log-filter-btn ${activeFilter === f ? 'active' : ''}`}
+                        onClick={() => setActiveFilter(f)}
+                    >
+                        {f}
+                    </button>
+                ))}
             </div>
 
             <div className='log-list'>
-                {logs.map(log => (
-                    <div className='log-item' key={log.id}>
-                        <div className='log-item-left'>
-                            <div className='log-type-badge' style={{ background: typeColor[log.type] }}>
-                                {typeLabel[log.type]}
-                            </div>
-                            <div className='log-item-info'>
-                                <div className='log-action'>{log.action}</div>
-                                <div className='log-detail'>{log.detail}</div>
-                            </div>
-                        </div>
-                        <div className='log-item-right'>
-                            <div className='log-user'>{log.user}</div>
-                            <div className='log-time'>{log.time}</div>
-                        </div>
+                {loading ? (
+                    <div style={{ color: 'rgba(255,255,255,0.3)', fontFamily: '"DM Sans",sans-serif', fontSize: '13px' }}>
+                        Loading logs...
                     </div>
-                ))}
+                ) : filteredLogs.length === 0 ? (
+                    <div style={{ color: 'rgba(255,255,255,0.3)', fontFamily: '"DM Sans",sans-serif', fontSize: '13px' }}>
+                        No logs found
+                    </div>
+                ) : (
+                    filteredLogs.map(log => (
+                        <div className='log-item' key={log.log_id}>
+                            <div className='log-item-left'>
+                                <div
+                                    className='log-type-badge'
+                                    style={{ background: typeColor[log.entity_type] ?? '#cfccf854' }}
+                                >
+                                    {typeLabel[log.entity_type] ?? log.entity_type}
+                                </div>
+                                <div className='log-item-info'>
+                                    <div className='log-action'>{log.action}</div>
+                                    <div className='log-detail'>
+                                        {log.entity_type} · ID: {log.entity_id}
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='log-item-right'>
+                                <div className='log-user'>{log.user_name}</div>
+                                <div className='log-time'>{timeAgo(log.timestamp)}</div>
+                            </div>
+                        </div>
+                    ))
+                )}
             </div>
         </div>
-    )
+    );
 }

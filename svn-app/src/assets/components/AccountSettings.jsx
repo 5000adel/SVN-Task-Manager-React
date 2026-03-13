@@ -1,6 +1,14 @@
 import './styles/AccountSettings.css'
+import { useApp } from '../../context/AppContext'
 
-export default function AccountSettings({ role }) {
+export default function AccountSettings() {
+    const { currentUser } = useApp();
+
+    const fullName = currentUser
+        ? `${currentUser.first_name} ${currentUser.last_name}`
+        : '';
+    const initial = currentUser?.first_name?.charAt(0) ?? '?';
+
     return (
         <div className='account-settings-container'>
             <div className='as-header'>
@@ -9,10 +17,10 @@ export default function AccountSettings({ role }) {
             </div>
 
             <div className='as-avatar-row'>
-                <div className='as-avatar'>A</div>
+                <div className='as-avatar'>{initial}</div>
                 <div className='as-avatar-info'>
-                    <div className='as-name'>[Full Name]</div>
-                    <div className='as-role-badge'>{role}</div>
+                    <div className='as-name'>{fullName}</div>
+                    <div className='as-role-badge'>{currentUser?.role}</div>
                 </div>
             </div>
 
@@ -21,16 +29,16 @@ export default function AccountSettings({ role }) {
             <div className='as-section'>
                 <div className='as-section-title'>Personal Information</div>
                 <div className='as-field'>
-                    <label className='as-label'>Full Name</label>
-                    <input className='as-input' placeholder='Full Name' />
+                    <label className='as-label'>First Name</label>
+                    <input className='as-input' defaultValue={currentUser?.first_name} placeholder='First Name' />
+                </div>
+                <div className='as-field'>
+                    <label className='as-label'>Last Name</label>
+                    <input className='as-input' defaultValue={currentUser?.last_name} placeholder='Last Name' />
                 </div>
                 <div className='as-field'>
                     <label className='as-label'>Username</label>
-                    <input className='as-input' placeholder='Username' />
-                </div>
-                <div className='as-field'>
-                    <label className='as-label'>Email</label>
-                    <input className='as-input' placeholder='Email' type='email' />
+                    <input className='as-input' defaultValue={currentUser?.username} placeholder='Username' />
                 </div>
             </div>
 
@@ -59,5 +67,5 @@ export default function AccountSettings({ role }) {
                 <button className='as-btn-primary'>Save Changes</button>
             </div>
         </div>
-    )
+    );
 }
