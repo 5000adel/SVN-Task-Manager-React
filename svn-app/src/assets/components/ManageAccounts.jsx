@@ -15,7 +15,7 @@ const emptyForm = {
     availability_status: true, experience_years: 0,
 };
 
-export default function ManageAccounts() {
+export default function ManageAccounts({ searchQuery = '' }) {
     const { users, loading } = useApp();
     const { showToast } = useToast();
 
@@ -29,8 +29,10 @@ export default function ManageAccounts() {
 
     const filtered = users.filter(u => {
         const matchRole   = roleFilter === 'All' || u.role === roleFilter.toLowerCase();
-        const matchSearch = search === '' ||
-            `${u.first_name} ${u.last_name} ${u.username}`.toLowerCase().includes(search.toLowerCase());
+        // merge internal search bar with topbar searchQuery — either can filter
+        const combined    = search || searchQuery;
+        const matchSearch = combined === '' ||
+            `${u.first_name} ${u.last_name} ${u.username}`.toLowerCase().includes(combined.toLowerCase());
         return matchRole && matchSearch;
     });
 

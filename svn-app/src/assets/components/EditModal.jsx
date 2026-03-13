@@ -3,18 +3,12 @@ import { useApp } from '../../context/AppContext';
 import { useToast } from '../../context/ToastContext';
 import './styles/EditModal.css';
 
-// EditModal opens on top of ViewCard
-// cardType: "task" | "project" | "employee"
-// data: the current data object
-// onClose: close this modal only
-// onSave: callback with updated data
-
 export default function EditModal({ onClose, cardType, data = {} }) {
-    const { currentUser, employees, projects } = useApp();
+    const { currentUser, employees, skills, getSkillsForEmployee } = useApp();
     const { showToast } = useToast();
     const role = currentUser?.role;
 
-    // ── Task edit state ───────────────────────────────────────────────────────
+    // ── Task form ─────────────────────────────────────────────────────────────
     const [taskForm, setTaskForm] = useState({
         task_name:        data.task?.task_name        ?? '',
         task_description: data.task?.task_description ?? '',
@@ -23,7 +17,7 @@ export default function EditModal({ onClose, cardType, data = {} }) {
         assigned_to:      data.assignment?.employee_user_id ?? '',
     });
 
-    // ── Project edit state ────────────────────────────────────────────────────
+    // ── Project form ──────────────────────────────────────────────────────────
     const [projectForm, setProjectForm] = useState({
         project_name:        data.project?.project_name        ?? '',
         project_description: data.project?.project_description ?? '',
@@ -33,7 +27,11 @@ export default function EditModal({ onClose, cardType, data = {} }) {
         required_workers:    data.project?.required_workers    ?? 1,
     });
 
-    // ── Employee edit state ───────────────────────────────────────────────────
+    // ── Employee form ─────────────────────────────────────────────────────────
+    const initialSkillIds = data.employee
+        ? getSkillsForEmployee(data.employee.user_id).map(s => s.skill_id)
+        : [];
+
     const [employeeForm, setEmployeeForm] = useState({
         first_name:          data.employee?.first_name          ?? '',
         last_name:           data.employee?.last_name           ?? '',
@@ -43,8 +41,17 @@ export default function EditModal({ onClose, cardType, data = {} }) {
         experience_years:    data.employee?.experience_years    ?? 0,
     });
 
+    const [selectedSkills, setSelectedSkills] = useState(initialSkillIds);
+
+    function toggleSkill(skill_id) {
+        setSelectedSkills(prev =>
+            prev.includes(skill_id)
+                ? prev.filter(id => id !== skill_id)
+                : [...prev, skill_id]
+        );
+    }
+
     function handleSave() {
-        // TODO: replace console.log with service call e.g. updateTask(task_id, taskForm)
         if (cardType === 'task') {
             console.log('[stub] updateTask:', data.task?.task_id, taskForm);
             showToast(`Task "${taskForm.task_name}" updated`);
@@ -55,7 +62,8 @@ export default function EditModal({ onClose, cardType, data = {} }) {
         }
         if (cardType === 'employee') {
             console.log('[stub] updateEmployee:', data.employee?.user_id, employeeForm);
-            showToast(`Employee "${employeeForm.first_name} ${employeeForm.last_name}" updated`);
+            console.log('[stub] setEmployeeSkills:', data.employee?.user_id, selectedSkills);
+            showToast(`${employeeForm.first_name} ${employeeForm.last_name} updated`);
         }
         onClose();
     }
@@ -75,7 +83,7 @@ export default function EditModal({ onClose, cardType, data = {} }) {
 
                 <div className='edit-modal-body'>
 
-                    {/* ── TASK FORM ─────────────────────────────────────── */}
+                    {/* ── TASK FORM ──────────────────────────────────────── */}
                     {cardType === 'task' && (
                         <>
                             <div className='em-field'>
@@ -113,7 +121,6 @@ export default function EditModal({ onClose, cardType, data = {} }) {
                                     />
                                 </div>
                             </div>
-                            {/* Assign employee — supervisor and admin only */}
                             {(role === 'supervisor' || role === 'admin') && (
                                 <div className='em-field'>
                                     <label className='em-label'>Assign To</label>
@@ -133,7 +140,7 @@ export default function EditModal({ onClose, cardType, data = {} }) {
                         </>
                     )}
 
-                    {/* ── PROJECT FORM ──────────────────────────────────── */}
+                    {/* ── PROJECT FORM ───────────────────────────────────── */}
                     {cardType === 'project' && (
                         <>
                             <div className='em-field'>
@@ -189,7 +196,7 @@ export default function EditModal({ onClose, cardType, data = {} }) {
                         </>
                     )}
 
-                    {/* ── EMPLOYEE FORM (admin only) ────────────────────── */}
+                    {/* ── EMPLOYEE FORM (admin only) ─────────────────────── */}
                     {cardType === 'employee' && role === 'admin' && (
                         <>
                             <div className='em-row'>
@@ -244,6 +251,26 @@ export default function EditModal({ onClose, cardType, data = {} }) {
                                     <option value='true'>Available</option>
                                     <option value='false'>Unavailable</option>
                                 </select>
+                            </div>
+
+                            {/* Skill checkboxes */}
+                            <div className='em-field'>
+                                <label className='em-label'>Skills</label>
+                                <div className='em-skills-grid'>
+                                    {skills.map(skill => {
+                                        const checked = selectedSkills.includes(skill.skill_id);
+                                        return (
+                                            <div
+                                                key={skill.skill_id}
+                                                className={`em-skill-chip ${checked ? 'active' : ''}`}
+                                                onClick={() => toggleSkill(skill.skill_id)}
+                                            >
+                                                {checked && <span>✓ </span>}
+                                                {skill.skill_name}
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                             </div>
                         </>
                     )}

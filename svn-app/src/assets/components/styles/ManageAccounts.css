@@ -373,3 +373,37 @@
 }
 
 .ma-save-btn:hover { background: #9163f7; }
+
+
+/* ── Skill chips ────────────────────────────────────────── */
+.ma-skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.ma-skill-chip {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+}
+
+.ma-skill-chip:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.ma-skill-chip.active {
+    background: #a78bfa54;
+    border-color: #a78bfa;
+    color: #a78bfa;
+}

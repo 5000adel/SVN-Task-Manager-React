@@ -21,6 +21,10 @@
     flex-direction: column;
     gap: 20px;
     box-shadow: 0 8px 40px rgba(0, 0, 0, 0.6);
+    max-height: 90vh;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #a78bfa #f1f1f100;
 }
 
 .edit-modal-header {
@@ -49,9 +53,7 @@
     height: unset;
 }
 
-.edit-modal-close:hover {
-    color: white;
-}
+.edit-modal-close:hover { color: white; }
 
 .edit-modal-body {
     display: flex;
@@ -95,13 +97,8 @@
     box-sizing: border-box;
 }
 
-.em-input:focus {
-    border-color: #a78bfa;
-}
-
-.em-input::placeholder {
-    color: rgba(255, 255, 255, 0.2);
-}
+.em-input:focus { border-color: #a78bfa; }
+.em-input::placeholder { color: rgba(255, 255, 255, 0.2); }
 
 .em-textarea {
     resize: vertical;
@@ -117,11 +114,42 @@
     padding-right: 32px;
 }
 
-.em-select option {
-    background: #1a1a2e;
+.em-select option { background: #1a1a2e; color: white; }
+
+/* ── Skill chips ────────────────────────────────────────── */
+.em-skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.em-skill-chip {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+}
+
+.em-skill-chip:hover {
+    background: rgba(255, 255, 255, 0.05);
     color: white;
 }
 
+.em-skill-chip.active {
+    background: #a78bfa54;
+    border-color: #a78bfa;
+    color: #a78bfa;
+}
+
+/* ── Actions ────────────────────────────────────────────── */
 .edit-modal-actions {
     display: flex;
     gap: 10px;
@@ -161,6 +189,4 @@
     height: unset;
 }
 
-.em-btn-primary:hover {
-    background: #9163f7;
-}
+.em-btn-primary:hover { background: #9163f7; }
