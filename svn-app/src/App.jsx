@@ -1,25 +1,38 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Auth from './assets/pages/Auth'
-import Background from './assets/components/Background'
 import Dashboard from './assets/pages/Dashboard'
+import { AppProvider } from './context/AppContext'
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [showAuth, setShowAuth] = useState(true);
-  const [role, setRole] = useState("");
+    const [currentUser, setCurrentUser] = useState(null);
+    const [showAuth, setShowAuth] = useState(true);
 
-  return (
-    <>
-      <div style={{ alignItems: 'center' }}>
-        <Background />
-        <Dashboard onLogOut={() => setShowAuth(true)} role={role}/>
-        {showAuth && <Auth onLogIn={(selectedRole) => {setShowAuth(false); setRole(selectedRole)}}/>};
-      </div>
-    </>
-  )
+    function handleLogin(user) {
+        setCurrentUser(user);
+        setShowAuth(false);
+    }
+
+    function handleLogout() {
+        setCurrentUser(null);
+        setShowAuth(true);
+    }
+
+    return (
+        <AppProvider currentUser={currentUser}>
+            <div style={{ alignItems: 'center' }}>
+                {!showAuth && (
+                    <Dashboard
+                        onLogOut={handleLogout}
+                        role={currentUser?.role}
+                    />
+                )}
+                {showAuth && (
+                    <Auth onLogIn={handleLogin} />
+                )}
+            </div>
+        </AppProvider>
+    );
 }
 
 export default App

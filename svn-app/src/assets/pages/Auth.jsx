@@ -1,9 +1,30 @@
 import '../styles/Auth.css'
 import Background from '../components/Background';
 import { useState } from 'react';
+import { login } from '../../services/userService';
 
 export default function Auth({ onLogIn }) {
-    const [role, setRole] = useState("employee");
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
+    async function handleLogin() {
+        if (!username || !password) {
+            setError("Please enter your username and password");
+            return;
+        }
+        setError("");
+        setLoading(true);
+        try {
+            const user = await login(username, password);
+            onLogIn(user); // passes the full user object up to App.jsx
+        } catch (e) {
+            setError(e.message);
+        } finally {
+            setLoading(false);
+        }
+    }
 
     return (
         <Background blur>
@@ -22,23 +43,46 @@ export default function Auth({ onLogIn }) {
                     </div>
 
                     <div className='container-box cb-1'>
-                        <div className='h1' style={{ paddingLeft: '5px' }}>Enter Username</div>
-                        <input placeholder='Username' className='auth-input' />
-                        <div className='h1' style={{ paddingLeft: '5px' }}>Enter Password</div>
-                        <input placeholder='Password' type='password' className='auth-input' />
+                        <div className='h1' style={{ paddingLeft: '5px' }}>Username</div>
+                        <input
+                            placeholder='Username'
+                            className='auth-input'
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
+                        />
+                        <div className='h1' style={{ paddingLeft: '5px' }}>Password</div>
+                        <input
+                            placeholder='Password'
+                            type='password'
+                            className='auth-input'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
+                        />
+                        {error && (
+                            <div style={{
+                                color: '#f8a4a4',
+                                fontSize: '13px',
+                                paddingLeft: '5px',
+                                fontFamily: '"DM Sans", sans-serif',
+                            }}>
+                                {error}
+                            </div>
+                        )}
                     </div>
 
                     <div className='container-box cb-2'>
-                        {/* Testing */}
-                        <select onChange={(e) => setRole(e.target.value)}>
-                            <option value="employee">Employee</option>
-                            <option value="supervisor">Supervisor</option>
-                            <option value="admin">Admin</option>
-                        </select>
-                        <button style={{ marginLeft: 'auto' }} onClick={() => {console.log(role); onLogIn(role);}} >Log In</button>
+                        <button
+                            style={{ marginLeft: 'auto' }}
+                            onClick={handleLogin}
+                            disabled={loading}
+                        >
+                            {loading ? 'Logging in...' : 'Log In'}
+                        </button>
                     </div>
                 </div>
             </div>
         </Background>
-    )
+    );
 }
