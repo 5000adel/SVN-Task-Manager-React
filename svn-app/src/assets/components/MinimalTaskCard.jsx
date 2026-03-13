@@ -5,7 +5,7 @@ export default function MinimalTaskCard() {
     const [showCard, setShowCard] = useState(false);
     return (
         <>
-            <div className="task-card-object-container" style={{ flexDirection: 'column' }} onClick={() => { setShowCard(true); console.log("view card") }}>
+            <div className="task-card-object-container" style={{ flexDirection: 'column',cursor:'pointer'}} onClick={() => { setShowCard(true); console.log("view card") }}>
                 <div style={{ fontWeight: '700', fontSize: '14px', fontFamily: '"Syne", sans-serif' }}>[Task Placeholder]</div>
                 <div className="task-card-status-container">
                     {/* confirmed finished task */}

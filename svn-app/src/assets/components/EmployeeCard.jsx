@@ -5,7 +5,7 @@ export default function EmployeeCard() {
     const [showCard, setShowCard] = useState(false);
     return (
         <>
-            <div className="employee-card-object-container" style={{ flexDirection: 'row' }} onClick={() => { setShowCard(true); console.log("view card") }}>
+            <div className="employee-card-object-container" style={{ flexDirection: 'row', cursor:'pointer' }} onClick={() => { setShowCard(true); console.log("view card") }}>
                 <div style={{ flexDirection: 'column' }}>
                     <div style={{ fontWeight: '700', fontSize: '14px', fontFamily: '"Syne", sans-serif', marginBottom: '10px' }}>[Employee Name]</div>
                     <div className="employee-status-container">
