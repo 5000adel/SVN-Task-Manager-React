@@ -4,6 +4,7 @@ import Auth from './assets/pages/Auth'
 import Dashboard from './assets/pages/Dashboard'
 import { AppProvider } from './context/AppContext'
 import { ToastProvider } from './context/ToastContext'
+import { logout } from './services/userService'
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null);
@@ -17,6 +18,12 @@ function App() {
     function handleLogout() {
         setCurrentUser(null);
         setShowAuth(true);
+    }
+    
+    function handleLogout() {
+    logout()
+    setCurrentUser(null)
+    setShowAuth(true)
     }
 
     return (

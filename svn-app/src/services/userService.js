@@ -7,12 +7,26 @@ import { users } from '../data/users';
 // ─── AUTH ─────────────────────────────────────────────────────────────────────
 
 export async function login(username, password) {
-    // TODO: replace with → fetch('/api/auth/login', { method: 'POST', body: JSON.stringify({ username, password }) })
-    const user = users.find(
-        u => u.username === username && u.password_hash === password
-    );
-    if (!user) throw new Error("Invalid username or password");
-    return user;
+    const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+    })
+    const data = await res.json()
+    if (!res.ok) throw new Error(data.error)
+
+    // Store the token for use in future requests
+    localStorage.setItem('token', data.token)
+    return data.user
+}
+
+export function getAuthHeader() {
+    const token = localStorage.getItem('token')
+    return token ? { 'Authorization': `Bearer ${token}` } : {}
+}
+
+export function logout() {
+    localStorage.removeItem('token')
 }
 
 // ─── READ ─────────────────────────────────────────────────────────────────────
